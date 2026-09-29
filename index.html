@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Unit Converter</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-slate-100 min-h-screen flex flex-col font-sans text-slate-800">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
+      <div class="max-w-4xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <h1 class="text-xl font-bold text-slate-900">Advanced Unit Converter</h1>
+        
+        <!-- Navbar Tabs for Weight, Distance, and Temperature -->
+        <nav class="flex bg-slate-100 p-1 rounded-xl gap-1">
+          <button id="tab-weight" class="tab-btn px-4 py-1.5 rounded-lg text-sm font-medium transition bg-white text-blue-600 shadow-sm">
+            Weight
+          </button>
+          <button id="tab-distance" class="tab-btn px-4 py-1.5 rounded-lg text-sm font-medium transition text-slate-600 hover:text-slate-900">
+            Distance
+          </button>
+          <button id="tab-temperature" class="tab-btn px-4 py-1.5 rounded-lg text-sm font-medium transition text-slate-600 hover:text-slate-900">
+            Temperature
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-2xl w-full mx-auto px-6 py-10 flex-grow">
+
+      <!-- SECTION 1: Weight Panel -->
+      <section id="panel-weight" class="tab-panel bg-white rounded-2xl shadow-md p-6 sm:p-8 space-y-6">
+        <div class="border-b border-slate-100 pb-4">
+          <h2 class="text-2xl font-bold text-slate-900">Weight Converter</h2>
+          <p class="text-sm text-slate-500">Convert between Pounds (lb) and Kilograms (kg)</p>
+        </div>
+
+        <form id="form-weight" class="space-y-4">
+          <div>
+            <label for="weight-direction" class="block text-sm font-medium text-slate-700 mb-1">Conversion Direction</label>
+            <select id="weight-direction" class="w-full rounded-lg border border-slate-300 px-4 py-2 bg-slate-50 focus:border-blue-500 focus:bg-white focus:outline-none">
+              <option value="lb-to-kg">Pounds (lb) to Kilograms (kg)</option>
+              <option value="kg-to-lb">Kilograms (kg) to Pounds (lb)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="weight-input" class="block text-sm font-medium text-slate-700 mb-1">Value or Comma-Separated List</label>
+            <input id="weight-input" type="text" placeholder="e.g. 150 or 10, 20, 50" class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-blue-500 focus:outline-none" required />
+          </div>
+
+          <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition cursor-pointer">
+            Convert Weight
+          </button>
+        </form>
+
+        <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
+          <span class="text-xs uppercase font-semibold text-slate-400 tracking-wider block mb-1">Converted Result</span>
+          <div id="weight-output" class="text-lg font-mono font-bold text-blue-600 break-words">--</div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Distance Panel -->
+      <section id="panel-distance" class="tab-panel hidden bg-white rounded-2xl shadow-md p-6 sm:p-8 space-y-6">
+        <div class="border-b border-slate-100 pb-4">
+          <h2 class="text-2xl font-bold text-slate-900">Distance Converter</h2>
+          <p class="text-sm text-slate-500">Convert between Miles (mi) and Kilometres (km)</p>
+        </div>
+
+        <form id="form-distance" class="space-y-4">
+          <div>
+            <label for="distance-direction" class="block text-sm font-medium text-slate-700 mb-1">Conversion Direction</label>
+            <select id="distance-direction" class="w-full rounded-lg border border-slate-300 px-4 py-2 bg-slate-50 focus:border-emerald-500 focus:bg-white focus:outline-none">
+              <option value="mi-to-km">Miles (mi) to Kilometres (km)</option>
+              <option value="km-to-mi">Kilometres (km) to Miles (mi)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="distance-input" class="block text-sm font-medium text-slate-700 mb-1">Value or Comma-Separated List</label>
+            <input id="distance-input" type="text" placeholder="e.g. 26.2 or 5, 10, 15" class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-emerald-500 focus:outline-none" required />
+          </div>
+
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition cursor-pointer">
+            Convert Distance
+          </button>
+        </form>
+
+        <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
+          <span class="text-xs uppercase font-semibold text-slate-400 tracking-wider block mb-1">Converted Result</span>
+          <div id="distance-output" class="text-lg font-mono font-bold text-emerald-600 break-words">--</div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Temperature Panel -->
+      <section id="panel-temperature" class="tab-panel hidden bg-white rounded-2xl shadow-md p-6 sm:p-8 space-y-6">
+        <div class="border-b border-slate-100 pb-4">
+          <h2 class="text-2xl font-bold text-slate-900">Temperature Converter</h2>
+          <p class="text-sm text-slate-500">Convert between Celsius (°C) and Fahrenheit (°F)</p>
+        </div>
+
+        <form id="form-temperature" class="space-y-4">
+          <div>
+            <label for="temp-direction" class="block text-sm font-medium text-slate-700 mb-1">Conversion Direction</label>
+            <select id="temp-direction" class="w-full rounded-lg border border-slate-300 px-4 py-2 bg-slate-50 focus:border-violet-500 focus:bg-white focus:outline-none">
+              <option value="c-to-f">Celsius (°C) to Fahrenheit (°F)</option>
+              <option value="f-to-c">Fahrenheit (°F) to Celsius (°C)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="temp-input" class="block text-sm font-medium text-slate-700 mb-1">Value or Comma-Separated List</label>
+            <input id="temp-input" type="text" placeholder="e.g. 37 or 0, 100, -40" class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-violet-500 focus:outline-none" required />
+          </div>
+
+          <button type="submit" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2.5 rounded-lg transition cursor-pointer">
+            Convert Temperature
+          </button>
+        </form>
+
+        <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
+          <span class="text-xs uppercase font-semibold text-slate-400 tracking-wider block mb-1">Converted Result</span>
+          <div id="temp-output" class="text-lg font-mono font-bold text-violet-600 break-words">--</div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
+      <div class="max-w-4xl mx-auto px-6 text-center text-sm text-slate-500">
+        CPRG 306 &middot; Assignment: Advanced JavaScript and Tailwind CSS
+      </div>
+    </footer>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
