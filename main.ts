@@ -12,59 +12,30 @@ const volumn = 2.20462;
 * Also, pass in number[] explicitly. 
 */
 const convert = (from: string, to: string) => {
+    const f = (co: number) => {
+        return (n: vOrArr): vOrArr => {
+            if (typeof n === 'number') {
+                return n * co;
+            } else {
+                return n.map((n) => n * co);
+            }
+        }
+    }
     if (from === "kg" && to === "lb") {
-        return (n: vOrArr): vOrArr => {
-            if (typeof n === 'number') {
-                return n * weight;
-            } else {
-                return n.map((n) => n * weight);
-            }
-        }
+        return f(weight);
     } else if (from === "lb" && to === "kg") {
-        return (n: vOrArr): vOrArr => {
-            if (typeof n === 'number') {
-                return n / weight;
-            } else {
-                return n.map((n) => n / weight);
-            }
-        }
+        return f(1 / weight)
     } else if (from === "mi" && to === "km") {
-        return (n: vOrArr): vOrArr => {
-            if (typeof n === 'number') {
-                return n * length;
-            } else {
-                return n.map((n) => n * length);
-            }
-        }
+        return f(length);
     } else if (from === "km" && to === "mi") {
-        return (n: vOrArr): vOrArr => {
-            if (typeof n === 'number') {
-                return n / length;
-            } else {
-                return n.map((n) => n / length);
-            }
-        }
+        return f(1 / length);
     } else if (from === "li" && to === "ga") {
-        return (n: vOrArr): vOrArr => {
-            if (typeof n === 'number') {
-                return n * volumn;
-            } else {
-                return n.map((n) => n * volumn);
-            }
-        }
+        return f(volumn);
     } else if (from === "ga" && to === "li") {
-        return (n: vOrArr): vOrArr => {
-            if (typeof n === 'number') {
-                return n / volumn;
-            } else {
-                return n.map((n) => n / volumn);
-            }
-        }
+        return f(1 / volumn);
     } else {
         return () => 0;
     }
-      
-    
 }
 // following is example for how to use convert()
 const kgInput = document.getElementById("kg-input") as HTMLInputElement;
